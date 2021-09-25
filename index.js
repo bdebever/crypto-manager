@@ -15,7 +15,7 @@ app.use(cors())
  * @param {*} response 
  */
 const getFollowingsTokensList = (request, response) => {
-    pool.query('SELECT * FROM books', (error, results) => {
+    pool.query('SELECT distinct symbol FROM prices', (error, results) => {
         if (error) {
             throw error
         }
@@ -24,10 +24,10 @@ const getFollowingsTokensList = (request, response) => {
 }
 
 const updatePricesFollowingsTokensList = (request, response) => {
-    const { author, title } = request.body
+    const { prices, title } = request.body
 
     pool.query(
-        'INSERT INTO books (author, title) VALUES ($1, $2)', [author, title],
+        'INSERT INTO prices (id, title) VALUES ($1, $2)', [author, title],
         (error) => {
             if (error) {
                 throw error

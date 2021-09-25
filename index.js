@@ -15,7 +15,7 @@ app.use(cors())
  * @param {*} response 
  */
 const getFollowingsTokensList = (request, response) => {
-    pool.query('SELECT distinct id FROM public.prices', (error, results) => {
+    pool.query('SELECT distinct id FROM followings', (error, results) => {
         if (error) {
             throw error
         }
@@ -27,7 +27,7 @@ const updatePricesFollowingsTokensList = (request, response) => {
     const { prices, title } = request.body
 
     pool.query(
-        'INSERT INTO prices (id, title) VALUES ($1, $2)', [author, title],
+        'INSERT INTO prices (id, price) VALUES ($1, $2)', [author, title],
         (error) => {
             if (error) {
                 throw error

@@ -15,7 +15,7 @@ app.use(cors())
  * @param {*} response 
  */
 const getFollowingsTokensList = (request, response) => {
-    pool.query('SELECT distinct symbol FROM prices', (error, results) => {
+    pool.query('SELECT distinct id FROM public.prices', (error, results) => {
         if (error) {
             throw error
         }
